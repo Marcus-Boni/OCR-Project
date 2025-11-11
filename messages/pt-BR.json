@@ -1,0 +1,99 @@
+{
+  "common": {
+    "appName": "OPTSOLV OCR",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "close": "Fechar",
+    "submit": "Enviar",
+    "search": "Pesquisar",
+    "filter": "Filtrar",
+    "actions": "Ações"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "upload": "Upload",
+    "tasks": "Tarefas",
+    "notes": "Notas",
+    "settings": "Configurações",
+    "logout": "Sair"
+  },
+  "auth": {
+    "login": "Entrar",
+    "register": "Registrar",
+    "logout": "Sair",
+    "email": "E-mail",
+    "password": "Senha",
+    "confirmPassword": "Confirmar Senha",
+    "forgotPassword": "Esqueceu a senha?",
+    "noAccount": "Não tem uma conta?",
+    "haveAccount": "Já tem uma conta?",
+    "loginSuccess": "Login realizado com sucesso!",
+    "logoutSuccess": "Logout realizado com sucesso!",
+    "registerSuccess": "Registro realizado com sucesso!",
+    "invalidCredentials": "Credenciais inválidas",
+    "emailRequired": "E-mail é obrigatório",
+    "passwordRequired": "Senha é obrigatória",
+    "passwordMismatch": "As senhas não coincidem"
+  },
+  "upload": {
+    "title": "Upload de Imagem",
+    "description": "Faça upload de uma imagem de suas anotações manuscritas",
+    "dragDrop": "Arraste e solte uma imagem aqui, ou clique para selecionar",
+    "selectFile": "Selecionar Arquivo",
+    "uploading": "Enviando...",
+    "processing": "Processando...",
+    "success": "Imagem processada com sucesso!",
+    "error": "Erro ao processar imagem",
+    "maxSize": "Tamanho máximo: 10MB",
+    "acceptedFormats": "Formatos aceitos: JPG, PNG, WEBP"
+  },
+  "ocr": {
+    "extracting": "Extraindo texto...",
+    "analyzing": "Analisando com IA...",
+    "extracted": "Texto extraído",
+    "noText": "Nenhum texto encontrado na imagem"
+  },
+  "tasks": {
+    "title": "Tarefas",
+    "noTasks": "Nenhuma tarefa encontrada",
+    "newTask": "Nova Tarefa",
+    "completed": "Concluída",
+    "pending": "Pendente",
+    "priority": "Prioridade",
+    "dueDate": "Data de Vencimento",
+    "description": "Descrição",
+    "status": "Status",
+    "createdAt": "Criado em"
+  },
+  "notes": {
+    "title": "Notas",
+    "noNotes": "Nenhuma nota encontrada",
+    "newNote": "Nova Nota",
+    "content": "Conteúdo",
+    "createdAt": "Criado em",
+    "updatedAt": "Atualizado em"
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": "Idioma",
+    "theme": "Tema",
+    "lightMode": "Modo Claro",
+    "darkMode": "Modo Escuro",
+    "systemMode": "Sistema",
+    "profile": "Perfil",
+    "account": "Conta",
+    "preferences": "Preferências"
+  },
+  "errors": {
+    "generic": "Ocorreu um erro. Tente novamente.",
+    "network": "Erro de rede. Verifique sua conexão.",
+    "unauthorized": "Você não está autorizado a acessar este recurso.",
+    "notFound": "Recurso não encontrado.",
+    "serverError": "Erro no servidor. Tente novamente mais tarde."
+  }
+}
