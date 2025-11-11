@@ -22,6 +22,28 @@
     "settings": "Settings",
     "logout": "Logout"
   },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Transform your handwritten notes into organized tasks and notes",
+    "uploadCard": {
+      "title": "Upload",
+      "description": "Upload an image of your handwritten notes"
+    },
+    "tasksCard": {
+      "title": "Tasks",
+      "description": "Manage your extracted tasks",
+      "content": "View and organize your tasks"
+    },
+    "notesCard": {
+      "title": "Notes",
+      "description": "Access your notes",
+      "content": "View and edit your notes"
+    },
+    "recentActivity": {
+      "title": "Recent Activity",
+      "empty": "No recent activity. Upload an image to get started!"
+    }
+  },
   "auth": {
     "login": "Login",
     "register": "Register",

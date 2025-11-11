@@ -22,6 +22,28 @@
     "settings": "Configurações",
     "logout": "Sair"
   },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Transforme suas anotações manuscritas em tarefas e notas organizadas",
+    "uploadCard": {
+      "title": "Upload",
+      "description": "Faça upload de uma imagem de suas anotações manuscritas"
+    },
+    "tasksCard": {
+      "title": "Tarefas",
+      "description": "Gerencie suas tarefas extraídas",
+      "content": "Visualize e organize suas tarefas"
+    },
+    "notesCard": {
+      "title": "Notas",
+      "description": "Acesse suas anotações",
+      "content": "Consulte e edite suas notas"
+    },
+    "recentActivity": {
+      "title": "Atividade Recente",
+      "empty": "Nenhuma atividade recente. Faça upload de uma imagem para começar!"
+    }
+  },
   "auth": {
     "login": "Entrar",
     "register": "Registrar",

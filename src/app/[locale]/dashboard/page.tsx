@@ -6,7 +6,13 @@ import { useTranslations } from "next-intl";
 import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function DashboardPage() {
   const t = useTranslations();
@@ -17,7 +23,9 @@ export default function DashboardPage() {
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-primary">{t("common.appName")}</h1>
+            <h1 className="text-2xl font-bold text-primary">
+              {t("common.appName")}
+            </h1>
           </div>
           <div className="flex items-center gap-2">
             <LanguageToggle />
@@ -29,10 +37,8 @@ export default function DashboardPage() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">{t("nav.dashboard")}</h2>
-          <p className="text-muted-foreground">
-            Transforme suas anotações manuscritas em tarefas e notas organizadas
-          </p>
+          <h2 className="text-3xl font-bold mb-2">{t("dashboard.title")}</h2>
+          <p className="text-muted-foreground">{t("dashboard.subtitle")}</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -44,9 +50,11 @@ export default function DashboardPage() {
                   <div className="p-2 rounded-lg bg-primary/10">
                     <Upload className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle>{t("nav.upload")}</CardTitle>
+                  <CardTitle>{t("dashboard.uploadCard.title")}</CardTitle>
                 </div>
-                <CardDescription>{t("upload.description")}</CardDescription>
+                <CardDescription>
+                  {t("dashboard.uploadCard.description")}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <Button className="w-full">{t("upload.selectFile")}</Button>
@@ -62,13 +70,15 @@ export default function DashboardPage() {
                   <div className="p-2 rounded-lg bg-primary/10">
                     <ListTodo className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle>{t("nav.tasks")}</CardTitle>
+                  <CardTitle>{t("dashboard.tasksCard.title")}</CardTitle>
                 </div>
-                <CardDescription>Gerencie suas tarefas extraídas</CardDescription>
+                <CardDescription>
+                  {t("dashboard.tasksCard.description")}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-sm text-muted-foreground">
-                  Visualize e organize suas tarefas
+                  {t("dashboard.tasksCard.content")}
                 </div>
               </CardContent>
             </Card>
@@ -82,12 +92,16 @@ export default function DashboardPage() {
                   <div className="p-2 rounded-lg bg-primary/10">
                     <StickyNote className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle>{t("nav.notes")}</CardTitle>
+                  <CardTitle>{t("dashboard.notesCard.title")}</CardTitle>
                 </div>
-                <CardDescription>Acesse suas anotações</CardDescription>
+                <CardDescription>
+                  {t("dashboard.notesCard.description")}
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-sm text-muted-foreground">Consulte e edite suas notas</div>
+                <div className="text-sm text-muted-foreground">
+                  {t("dashboard.notesCard.content")}
+                </div>
               </CardContent>
             </Card>
           </Link>
@@ -95,11 +109,13 @@ export default function DashboardPage() {
 
         {/* Recent Activity */}
         <div className="mt-12">
-          <h3 className="text-2xl font-bold mb-4">Atividade Recente</h3>
+          <h3 className="text-2xl font-bold mb-4">
+            {t("dashboard.recentActivity.title")}
+          </h3>
           <Card>
             <CardContent className="py-8">
               <p className="text-center text-muted-foreground">
-                Nenhuma atividade recente. Faça upload de uma imagem para começar!
+                {t("dashboard.recentActivity.empty")}
               </p>
             </CardContent>
           </Card>

@@ -1,25 +1,34 @@
 "use client";
 
 import { Languages } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter } from "@/i18n/routing";
-import { useUiStore } from "@/lib/store/ui-store";
 
 export function LanguageToggle() {
   const t = useTranslations("settings");
+  const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
-  const { preferredLocale, setPreferredLocale } = useUiStore();
+  const [isPending, startTransition] = useTransition();
 
   const toggleLanguage = () => {
-    const newLocale = preferredLocale === "pt-BR" ? "en-US" : "pt-BR";
-    setPreferredLocale(newLocale);
-    router.replace(pathname, { locale: newLocale });
+    const newLocale = locale === "pt-BR" ? "en-US" : "pt-BR";
+
+    startTransition(() => {
+      router.replace(pathname, { locale: newLocale });
+    });
   };
 
   return (
-    <Button variant="ghost" size="icon" onClick={toggleLanguage} title={t("language")}>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleLanguage}
+      disabled={isPending}
+      title={t("language")}
+    >
       <Languages className="h-5 w-5" />
       <span className="sr-only">{t("language")}</span>
     </Button>
