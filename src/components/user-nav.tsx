@@ -35,7 +35,6 @@ export function UserNav({ user }: UserNavProps) {
   const userName = user?.user_metadata?.full_name || userEmail.split("@")[0];
   const avatarUrl = user?.user_metadata?.avatar_url;
 
-  // Get user initials for avatar fallback
   const getInitials = (name: string) => {
     return name
       .split(" ")

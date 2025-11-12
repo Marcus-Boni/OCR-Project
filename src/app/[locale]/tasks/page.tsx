@@ -39,7 +39,6 @@ export default function TasksPage() {
     getUser();
   }, [supabase]);
 
-  // Fetch tasks
   const {
     data: tasks,
     isLoading: tasksLoading,
@@ -61,7 +60,6 @@ export default function TasksPage() {
     enabled: !!user,
   });
 
-  // Toggle task status mutation
   const toggleTaskMutation = useMutation({
     mutationFn: async (task: Task) => {
       const newStatus = task.status === "completed" ? "pending" : "completed";
@@ -82,7 +80,6 @@ export default function TasksPage() {
     },
   });
 
-  // Delete task mutation
   const deleteTaskMutation = useMutation({
     mutationFn: async (taskId: string) => {
       const { error } = await supabase.from("tasks").delete().eq("id", taskId);
@@ -156,7 +153,6 @@ export default function TasksPage() {
           </Card>
         ) : tasks && tasks.length > 0 ? (
           <div className="space-y-8">
-            {/* Pending Tasks */}
             {pendingTasks.length > 0 && (
               <div>
                 <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
@@ -216,7 +212,6 @@ export default function TasksPage() {
               </div>
             )}
 
-            {/* Completed Tasks */}
             {completedTasks.length > 0 && (
               <div>
                 <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">

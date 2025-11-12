@@ -9,13 +9,11 @@ export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
-    // Render placeholder with same dimensions to avoid layout shift
     return (
       <Button variant="ghost" size="icon" disabled>
         <div className="h-5 w-5" />

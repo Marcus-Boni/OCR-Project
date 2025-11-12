@@ -70,7 +70,6 @@ export default function UploadPage() {
     getUser();
   }, [supabase]);
 
-  // Upload mutation
   const uploadMutation = useMutation({
     mutationFn: async (file: File) => {
       const formData = new FormData();
@@ -90,7 +89,6 @@ export default function UploadPage() {
     },
   });
 
-  // OCR mutation
   const ocrMutation = useMutation({
     mutationFn: async (imageUrl: string) => {
       const response = await fetch("/api/ocr", {
@@ -108,7 +106,6 @@ export default function UploadPage() {
     },
   });
 
-  // Analyze mutation
   const analyzeMutation = useMutation({
     mutationFn: async (data: { text: string; documentId: string }) => {
       const response = await fetch("/api/analyze", {
@@ -126,7 +123,6 @@ export default function UploadPage() {
     },
   });
 
-  // Process file upload and analysis
   const processFile = useCallback(
     async (file: File) => {
       if (!user) {
@@ -135,7 +131,6 @@ export default function UploadPage() {
       }
 
       try {
-        // Step 1: Upload
         setCurrentStep("uploading");
         const uploadResult = await uploadMutation.mutateAsync(file);
 
@@ -145,7 +140,6 @@ export default function UploadPage() {
 
         const { documentId, imageUrl } = uploadResult.data;
 
-        // Step 2: OCR
         setCurrentStep("ocr");
         const ocrResult = await ocrMutation.mutateAsync(imageUrl);
 
@@ -156,13 +150,11 @@ export default function UploadPage() {
         const extractedText = ocrResult.data.text;
         setExtractedText(extractedText);
 
-        // Update document with extracted text
         await supabase
           .from("documents")
           .update({ extracted_text: extractedText })
           .eq("id", documentId);
 
-        // Step 3: AI Analysis
         setCurrentStep("analyzing");
         const analysisResult = await analyzeMutation.mutateAsync({
           text: extractedText,
@@ -175,7 +167,6 @@ export default function UploadPage() {
 
         const { tasks, notes } = analysisResult.data;
 
-        // Save tasks
         if (tasks && tasks.length > 0) {
           const tasksToInsert = tasks.map((task) => ({
             document_id: documentId,
@@ -193,7 +184,6 @@ export default function UploadPage() {
           }
         }
 
-        // Save notes
         if (notes && notes.length > 0) {
           const notesToInsert = notes.map((note) => ({
             document_id: documentId,
@@ -208,17 +198,14 @@ export default function UploadPage() {
           }
         }
 
-        // Update document with analysis
         await supabase
           .from("documents")
           .update({ analysis: analysisResult.data })
           .eq("id", documentId);
 
-        // Step 4: Success
         setCurrentStep("success");
         toast.success(t("upload.success"));
 
-        // Redirect to dashboard after 2 seconds
         setTimeout(() => {
           router.push("/dashboard");
         }, 2000);
@@ -232,13 +219,11 @@ export default function UploadPage() {
     [user, t, uploadMutation, ocrMutation, analyzeMutation, supabase, router]
   );
 
-  // Dropzone configuration
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
       if (!file) return;
 
-      // Validate file
       if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
         toast.error(t("validation.file.type"));
         return;
@@ -249,14 +234,12 @@ export default function UploadPage() {
         return;
       }
 
-      // Create preview
       const reader = new FileReader();
       reader.onload = () => {
         setPreviewUrl(reader.result as string);
       };
       reader.readAsDataURL(file);
 
-      // Process file
       processFile(file);
     },
     [processFile, t]
@@ -307,7 +290,6 @@ export default function UploadPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {/* Upload Area */}
               <div
                 {...getRootProps()}
                 className={`
@@ -370,7 +352,6 @@ export default function UploadPage() {
                 )}
               </div>
 
-              {/* Extracted Text Preview */}
               {extractedText && (
                 <div className="mt-6">
                   <h3 className="font-semibold mb-2">{t("ocr.extracted")}</h3>

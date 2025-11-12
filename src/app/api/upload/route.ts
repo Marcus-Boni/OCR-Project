@@ -8,13 +8,11 @@ import { createServerSupabaseClient, getSession } from "@/lib/supabase/server";
  */
 export async function POST(req: NextRequest) {
   try {
-    // Authenticate user
     const session = await getSession();
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Get form data
     const formData = await req.formData();
     const file = formData.get("file") as File;
 
@@ -22,7 +20,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
-    // Validate file type
     const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json(
@@ -31,24 +28,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Validate file size (10MB max)
     const maxSize = 10 * 1024 * 1024;
     if (file.size > maxSize) {
       return NextResponse.json({ error: "File size must be less than 10MB" }, { status: 400 });
     }
 
-    // Get Supabase client
     const supabase = await createServerSupabaseClient();
 
-    // Generate unique filename
     const fileExt = file.name.split(".").pop();
     const fileName = `${session.user.id}/${nanoid()}.${fileExt}`;
 
-    // Convert file to ArrayBuffer
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
 
-    // Upload to Supabase Storage
     const { data, error } = await supabase.storage.from("documents").upload(fileName, buffer, {
       contentType: file.type,
       cacheControl: "3600",
@@ -60,12 +52,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Failed to upload file" }, { status: 500 });
     }
 
-    // Get public URL
     const {
       data: { publicUrl },
     } = supabase.storage.from("documents").getPublicUrl(data.path);
 
-    // Create document record
     const { data: document, error: dbError } = await supabase
       .from("documents")
       .insert({
@@ -77,7 +67,6 @@ export async function POST(req: NextRequest) {
 
     if (dbError) {
       console.error("Database error:", dbError);
-      // Try to cleanup uploaded file
       await supabase.storage.from("documents").remove([data.path]);
       return NextResponse.json({ error: "Failed to create document record" }, { status: 500 });
     }

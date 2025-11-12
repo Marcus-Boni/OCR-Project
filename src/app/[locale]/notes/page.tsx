@@ -39,7 +39,6 @@ export default function NotesPage() {
     getUser();
   }, [supabase]);
 
-  // Fetch notes
   const {
     data: notes,
     isLoading: notesLoading,
@@ -61,7 +60,6 @@ export default function NotesPage() {
     enabled: !!user,
   });
 
-  // Delete note mutation
   const deleteNoteMutation = useMutation({
     mutationFn: async (noteId: string) => {
       const { error } = await supabase.from("notes").delete().eq("id", noteId);

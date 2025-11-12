@@ -10,13 +10,11 @@ import { aiAnalysisRequestSchema } from "@/lib/validations";
  */
 export async function POST(req: NextRequest) {
   try {
-    // Authenticate user
     const session = await getSession();
     if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Parse and validate request body
     const body = await req.json();
     const validation = aiAnalysisRequestSchema.safeParse(body);
 
@@ -29,7 +27,6 @@ export async function POST(req: NextRequest) {
 
     const { text, documentId } = validation.data;
 
-    // Initialize Gemini AI
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       console.error("GEMINI_API_KEY is not configured");
@@ -37,19 +34,16 @@ export async function POST(req: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    // Use Gemini 2.5 Pro - Best for complex text analysis and structured output
-    // Released June 2025, superior reasoning capabilities
     const model = genAI.getGenerativeModel({
       model: "gemini-2.5-pro",
       generationConfig: {
-        temperature: 0.7, // Balanced for creative yet consistent categorization
+        temperature: 0.7,
         topP: 0.95,
         topK: 40,
-        responseMimeType: "application/json", // Request JSON response format
+        responseMimeType: "application/json", 
       },
     });
 
-    // Create prompt for task and note classification
     const prompt = `Você é um assistente inteligente para análise de anotações manuscritas. 
 Analise o seguinte texto extraído de uma imagem e classifique o conteúdo em:
 
@@ -90,13 +84,10 @@ ${text}
 
 IMPORTANTE: Retorne APENAS o JSON, sem texto adicional antes ou depois.`;
 
-    // Generate AI analysis
     const result = await model.generateContent(prompt);
     const response = result.response;
     const aiText = response.text();
 
-    // Parse AI response
-    // Remove markdown code blocks if present
     const cleanedText = aiText
       .replace(/```json\n?/g, "")
       .replace(/```\n?/g, "")

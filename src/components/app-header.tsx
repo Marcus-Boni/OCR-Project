@@ -31,7 +31,6 @@ export function AppHeader({ user, loading = false }: AppHeaderProps) {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo / Brand */}
           <Link href="/dashboard" className="flex items-center space-x-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
               <ScanText className="h-5 w-5 text-primary-foreground" />
@@ -39,7 +38,6 @@ export function AppHeader({ user, loading = false }: AppHeaderProps) {
             <span className="hidden font-bold text-xl sm:inline-block">{t("common.appName")}</span>
           </Link>
 
-          {/* Navigation - Desktop */}
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             <Link
               href="/dashboard"
@@ -61,19 +59,16 @@ export function AppHeader({ user, loading = false }: AppHeaderProps) {
             </Link>
           </nav>
 
-          {/* Right Side Actions */}
           <div className="flex items-center space-x-2">
             <LanguageToggle />
             <ThemeToggle />
 
-            {/* User Avatar or Skeleton */}
             {loading ? (
               <Skeleton className="h-10 w-10 rounded-full" />
             ) : (
               user && <UserNav user={user} />
             )}
 
-            {/* Mobile Menu */}
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild className="md:hidden">
                 <Button variant="ghost" size="icon">

@@ -109,5 +109,4 @@ export function useValidationSchemas() {
   }, [locale, t]);
 }
 
-// Export types
 export type { LoginInput, RegisterInput } from "./index";

@@ -55,7 +55,6 @@ export default function DashboardPage() {
 
     getUser();
 
-    // Detect locale from URL
     const pathname = window.location.pathname;
     if (pathname.startsWith("/en-US")) {
       setLocale("en-US");
@@ -64,7 +63,6 @@ export default function DashboardPage() {
     }
   }, [supabase]);
 
-  // Fetch recent tasks
   const { data: tasks = [], isLoading: tasksLoading } = useQuery({
     queryKey: ["tasks", user?.id],
     queryFn: async () => {
@@ -82,7 +80,6 @@ export default function DashboardPage() {
     enabled: !!user,
   });
 
-  // Fetch recent notes
   const { data: notes = [], isLoading: notesLoading } = useQuery({
     queryKey: ["notes", user?.id],
     queryFn: async () => {
@@ -100,7 +97,6 @@ export default function DashboardPage() {
     enabled: !!user,
   });
 
-  // Fetch recent documents
   const { data: documents = [], isLoading: documentsLoading } = useQuery({
     queryKey: ["documents", user?.id],
     queryFn: async () => {
@@ -126,7 +122,6 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-background">
       <AppHeader user={user} loading={loading} />
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-2">{t("dashboard.title")}</h2>
@@ -134,7 +129,6 @@ export default function DashboardPage() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {/* Upload Card */}
           <Link href="/upload">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardHeader>
@@ -154,7 +148,6 @@ export default function DashboardPage() {
             </Card>
           </Link>
 
-          {/* Tasks Card */}
           <Link href="/tasks">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardHeader>
@@ -174,7 +167,6 @@ export default function DashboardPage() {
             </Card>
           </Link>
 
-          {/* Notes Card */}
           <Link href="/notes">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardHeader>
@@ -195,7 +187,6 @@ export default function DashboardPage() {
           </Link>
         </div>
 
-        {/* Recent Activity */}
         <div className="mt-12">
           <h3 className="text-2xl font-bold mb-4">{t("dashboard.recentActivity.title")}</h3>
           
@@ -207,7 +198,6 @@ export default function DashboardPage() {
             </div>
           ) : hasActivity ? (
             <div className="space-y-6">
-              {/* Recent Documents */}
               {documents.length > 0 && (
                 <div>
                   <h4 className="text-lg font-semibold mb-3 flex items-center gap-2">
@@ -235,7 +225,6 @@ export default function DashboardPage() {
                 </div>
               )}
 
-              {/* Recent Tasks */}
               {tasks.length > 0 && (
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -280,7 +269,6 @@ export default function DashboardPage() {
                 </div>
               )}
 
-              {/* Recent Notes */}
               {notes.length > 0 && (
                 <div>
                   <div className="flex items-center justify-between mb-3">

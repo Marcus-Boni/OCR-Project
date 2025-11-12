@@ -9,13 +9,11 @@ import { ocrRequestSchema } from "@/lib/validations";
  */
 export async function POST(req: NextRequest) {
   try {
-    // Authenticate user
     const session = await getSession();
     if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Parse and validate request body
     const body = await req.json();
     const validation = ocrRequestSchema.safeParse(body);
 
@@ -28,7 +26,6 @@ export async function POST(req: NextRequest) {
 
     const { imageUrl } = validation.data;
 
-    // Initialize Gemini AI with Vision capabilities
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       console.error("GEMINI_API_KEY is not configured");
@@ -36,18 +33,15 @@ export async function POST(req: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    // Use Gemini 2.5 Flash - Best for multimodal OCR (fast and accurate)
-    // Released June 2025, supports 1M input tokens and vision
     const model = genAI.getGenerativeModel({
       model: "gemini-2.5-flash",
       generationConfig: {
-        temperature: 0.4, // Lower temperature for more consistent OCR results
+        temperature: 0.4, 
         topP: 0.95,
         topK: 40,
       },
     });
 
-    // Fetch image from URL
     const imageResponse = await fetch(imageUrl);
     if (!imageResponse.ok) {
       return NextResponse.json({ error: "Failed to fetch image" }, { status: 400 });
@@ -57,12 +51,10 @@ export async function POST(req: NextRequest) {
     const base64Image = Buffer.from(imageBuffer).toString("base64");
     const mimeType = imageResponse.headers.get("content-type") || "image/jpeg";
 
-    // Create vision prompt
     const prompt = `Extract all text from this image. 
 If the text is handwritten, do your best to read it accurately.
 Return only the extracted text, without any additional comments or formatting.`;
 
-    // Generate content with image
     const result = await model.generateContent([
       prompt,
       {
