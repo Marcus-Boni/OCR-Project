@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import { AppHeader } from "@/components/app-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { createClient } from "@/lib/supabase/browser";
 
 interface Task {
@@ -63,7 +62,7 @@ export default function DashboardPage() {
     }
   }, [supabase]);
 
-  const { data: tasks = [], isLoading: tasksLoading } = useQuery({
+  const { data: tasks = [] } = useQuery({
     queryKey: ["tasks", user?.id],
     queryFn: async () => {
       if (!user) return [];
@@ -80,7 +79,7 @@ export default function DashboardPage() {
     enabled: !!user,
   });
 
-  const { data: notes = [], isLoading: notesLoading } = useQuery({
+  const { data: notes = [] } = useQuery({
     queryKey: ["notes", user?.id],
     queryFn: async () => {
       if (!user) return [];
@@ -97,7 +96,7 @@ export default function DashboardPage() {
     enabled: !!user,
   });
 
-  const { data: documents = [], isLoading: documentsLoading } = useQuery({
+  const { data: documents = [] } = useQuery({
     queryKey: ["documents", user?.id],
     queryFn: async () => {
       if (!user) return [];
@@ -115,7 +114,6 @@ export default function DashboardPage() {
   });
 
   const dateLocale = locale === "pt-BR" ? ptBR : enUS;
-  const isLoadingActivity = tasksLoading || notesLoading || documentsLoading;
   const hasActivity = tasks.length > 0 || notes.length > 0 || documents.length > 0;
 
   return (
@@ -190,13 +188,7 @@ export default function DashboardPage() {
         <div className="mt-12">
           <h3 className="text-2xl font-bold mb-4">{t("dashboard.recentActivity.title")}</h3>
           
-          {isLoadingActivity ? (
-            <div className="space-y-4">
-              <Skeleton className="h-24 w-full" />
-              <Skeleton className="h-24 w-full" />
-              <Skeleton className="h-24 w-full" />
-            </div>
-          ) : hasActivity ? (
+          {hasActivity ? (
             <div className="space-y-6">
               {documents.length > 0 && (
                 <div>
