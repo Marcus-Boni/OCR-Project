@@ -57,7 +57,7 @@ OPTSOLV OCR é uma solução moderna e completa que permite:
 
 ```bash
 # Clone o repositório
-git clone <seu-repo>
+git clone "https://github.com/Marcus-Boni/OCR-Project.git"
 cd opts-ocr-app
 
 # Instale as dependências
@@ -76,8 +76,6 @@ Acesse: `http://localhost:3000`
 ## ⚙️ Configuração Completa
 
 Para configurar o Supabase (banco de dados, storage, autenticação), siga o guia detalhado em:
-
-📚 **[SETUP.md](./SETUP.md)** - Guia completo de configuração
 
 ## 📁 Estrutura do Projeto
 
@@ -170,11 +168,6 @@ Troca de idioma via botão no header ou configurações.
 - [ ] Integração com calendário
 - [ ] App mobile (React Native)
 
-## 📚 Documentação
-
-- [SETUP.md](./SETUP.md) - Configuração completa do Supabase
-- [IMPLEMENTATION.md](./IMPLEMENTATION.md) - Detalhes da implementação
-
 ## 🤝 Contribuindo
 
 Contribuições são bem-vindas! Para contribuir:
@@ -189,13 +182,6 @@ Contribuições são bem-vindas! Para contribuir:
 
 Este projeto está sob a licença MIT.
 
-## 👨‍💻 Desenvolvido com
-
-- ❤️ Paixão por código limpo
-- 🧠 Arquitetura de software sólida
-- 🎨 Design moderno e acessível
-- 🚀 Performance em mente
-
 ---
 
-**OPTSOLV** - Transformando anotações em produtividade! 🚀✨
+**Desenvolvido com ❤️** Transformando anotações em produtividade! 🚀✨
