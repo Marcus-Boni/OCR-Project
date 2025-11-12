@@ -10,13 +10,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { AppHeader } from "@/components/app-header";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { createClient } from "@/lib/supabase/browser";
 import type { Database } from "@/types/database";
@@ -113,23 +107,16 @@ export default function NotesPage() {
         ) : error ? (
           <Card>
             <CardContent className="py-8">
-              <p className="text-center text-destructive">
-                {t("errors.generic")}
-              </p>
+              <p className="text-center text-destructive">{t("errors.generic")}</p>
             </CardContent>
           </Card>
         ) : notes && notes.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {notes.map((note) => (
-              <Card
-                key={note.id}
-                className="hover:shadow-lg transition-shadow flex flex-col"
-              >
+              <Card key={note.id} className="hover:shadow-lg transition-shadow flex flex-col">
                 <CardHeader>
                   <div className="flex items-start justify-between gap-2">
-                    <CardTitle className="text-lg flex-1">
-                      {note.title}
-                    </CardTitle>
+                    <CardTitle className="text-lg flex-1">{note.title}</CardTitle>
                     <Button
                       variant="ghost"
                       size="icon"
@@ -144,9 +131,7 @@ export default function NotesPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1">
-                  <p className="text-sm whitespace-pre-wrap line-clamp-6">
-                    {note.content}
-                  </p>
+                  <p className="text-sm whitespace-pre-wrap line-clamp-6">{note.content}</p>
                 </CardContent>
               </Card>
             ))}

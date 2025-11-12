@@ -2,12 +2,7 @@
 
 import type { User } from "@supabase/supabase-js";
 import { useMutation } from "@tanstack/react-query";
-import {
-  CheckCircle2,
-  FileImage,
-  Loader2,
-  Upload as UploadIcon,
-} from "lucide-react";
+import { CheckCircle2, FileImage, Loader2, Upload as UploadIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
@@ -15,13 +10,7 @@ import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
 import { AppHeader } from "@/components/app-header";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/browser";
 
 type UploadStep = "idle" | "uploading" | "ocr" | "analyzing" | "success";
@@ -198,10 +187,7 @@ export default function UploadPage() {
             status: "pending" as const,
           }));
 
-          // @ts-expect-error - Supabase types need regeneration
-          const { error: tasksError } = await supabase
-            .from("tasks")
-            .insert(tasksToInsert);
+          const { error: tasksError } = await supabase.from("tasks").insert(tasksToInsert);
           if (tasksError) {
             console.error("Error saving tasks:", tasksError);
           }
@@ -216,17 +202,13 @@ export default function UploadPage() {
             content: note.content,
           }));
 
-          // @ts-expect-error - Supabase types need regeneration
-          const { error: notesError } = await supabase
-            .from("notes")
-            .insert(notesToInsert);
+          const { error: notesError } = await supabase.from("notes").insert(notesToInsert);
           if (notesError) {
             console.error("Error saving notes:", notesError);
           }
         }
 
         // Update document with analysis
-        // @ts-expect-error - Supabase types need regeneration
         await supabase
           .from("documents")
           .update({ analysis: analysisResult.data })
@@ -331,11 +313,7 @@ export default function UploadPage() {
                 className={`
                   border-2 border-dashed rounded-lg p-12 text-center cursor-pointer
                   transition-colors duration-200
-                  ${
-                    isDragActive
-                      ? "border-primary bg-primary/5"
-                      : "border-muted-foreground/25"
-                  }
+                  ${isDragActive ? "border-primary bg-primary/5" : "border-muted-foreground/25"}
                   ${
                     currentStep !== "idle"
                       ? "opacity-50 cursor-not-allowed"
@@ -347,12 +325,8 @@ export default function UploadPage() {
 
                 {previewUrl ? (
                   <div className="space-y-4">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={previewUrl}
-                      alt="Preview"
-                      className="max-h-64 mx-auto rounded-lg"
-                    />
+                    {/** biome-ignore lint/performance/noImgElement: <Supressed because using native img for preview only> */}
+                    <img src={previewUrl} alt="Preview" className="max-h-64 mx-auto rounded-lg" />
                     {currentStep !== "idle" && (
                       <div className="flex items-center justify-center gap-2 text-primary">
                         <Loader2 className="h-5 w-5 animate-spin" />
@@ -377,9 +351,7 @@ export default function UploadPage() {
                     </div>
                     <div>
                       <p className="text-lg font-medium">
-                        {isDragActive
-                          ? t("upload.dragDrop")
-                          : t("upload.dragDrop")}
+                        {isDragActive ? t("upload.dragDrop") : t("upload.dragDrop")}
                       </p>
                       <p className="text-sm text-muted-foreground mt-2">
                         {t("upload.maxSize")} • {t("upload.acceptedFormats")}
@@ -392,9 +364,7 @@ export default function UploadPage() {
                       </Button>
                     )}
                     {currentStep !== "idle" && currentStep !== "success" && (
-                      <p className="text-primary font-medium">
-                        {getStepMessage()}
-                      </p>
+                      <p className="text-primary font-medium">{getStepMessage()}</p>
                     )}
                   </div>
                 )}
@@ -405,9 +375,7 @@ export default function UploadPage() {
                 <div className="mt-6">
                   <h3 className="font-semibold mb-2">{t("ocr.extracted")}</h3>
                   <div className="bg-muted p-4 rounded-lg max-h-48 overflow-y-auto">
-                    <p className="text-sm whitespace-pre-wrap">
-                      {extractedText}
-                    </p>
+                    <p className="text-sm whitespace-pre-wrap">{extractedText}</p>
                   </div>
                 </div>
               )}

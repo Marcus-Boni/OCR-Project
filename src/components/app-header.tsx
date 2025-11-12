@@ -8,13 +8,7 @@ import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserNav } from "@/components/user-nav";
 
@@ -42,9 +36,7 @@ export function AppHeader({ user, loading = false }: AppHeaderProps) {
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
               <ScanText className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="hidden font-bold text-xl sm:inline-block">
-              {t("common.appName")}
-            </span>
+            <span className="hidden font-bold text-xl sm:inline-block">{t("common.appName")}</span>
           </Link>
 
           {/* Navigation - Desktop */}
@@ -61,16 +53,10 @@ export function AppHeader({ user, loading = false }: AppHeaderProps) {
             >
               {t("nav.upload")}
             </Link>
-            <Link
-              href="/tasks"
-              className="transition-colors hover:text-primary text-foreground/60"
-            >
+            <Link href="/tasks" className="transition-colors hover:text-primary text-foreground/60">
               {t("nav.tasks")}
             </Link>
-            <Link
-              href="/notes"
-              className="transition-colors hover:text-primary text-foreground/60"
-            >
+            <Link href="/notes" className="transition-colors hover:text-primary text-foreground/60">
               {t("nav.notes")}
             </Link>
           </nav>

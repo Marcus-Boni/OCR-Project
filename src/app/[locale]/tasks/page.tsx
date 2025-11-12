@@ -10,13 +10,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { AppHeader } from "@/components/app-header";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { createClient } from "@/lib/supabase/browser";
 import type { Database } from "@/types/database";
@@ -71,7 +65,6 @@ export default function TasksPage() {
   const toggleTaskMutation = useMutation({
     mutationFn: async (task: Task) => {
       const newStatus = task.status === "completed" ? "pending" : "completed";
-      // @ts-expect-error - Supabase types need regeneration
       const { error } = await supabase
         .from("tasks")
         .update({ status: newStatus })
@@ -134,8 +127,7 @@ export default function TasksPage() {
   };
 
   const pendingTasks = tasks?.filter((task) => task.status === "pending") || [];
-  const completedTasks =
-    tasks?.filter((task) => task.status === "completed") || [];
+  const completedTasks = tasks?.filter((task) => task.status === "completed") || [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -159,9 +151,7 @@ export default function TasksPage() {
         ) : error ? (
           <Card>
             <CardContent className="py-8">
-              <p className="text-center text-destructive">
-                {t("errors.generic")}
-              </p>
+              <p className="text-center text-destructive">{t("errors.generic")}</p>
             </CardContent>
           </Card>
         ) : tasks && tasks.length > 0 ? (
@@ -175,20 +165,13 @@ export default function TasksPage() {
                 </h3>
                 <div className="grid gap-4 md:grid-cols-2">
                   {pendingTasks.map((task) => (
-                    <Card
-                      key={task.id}
-                      className="hover:shadow-md transition-shadow"
-                    >
+                    <Card key={task.id} className="hover:shadow-md transition-shadow">
                       <CardHeader>
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <CardTitle className="text-lg">
-                              {task.title}
-                            </CardTitle>
+                            <CardTitle className="text-lg">{task.title}</CardTitle>
                             {task.description && (
-                              <CardDescription className="mt-2">
-                                {task.description}
-                              </CardDescription>
+                              <CardDescription className="mt-2">{task.description}</CardDescription>
                             )}
                           </div>
                           <Button
@@ -205,9 +188,7 @@ export default function TasksPage() {
                         <div className="flex items-center justify-between text-sm">
                           <div className="flex items-center gap-4">
                             <div>
-                              <span className="text-muted-foreground">
-                                {t("tasks.priority")}:{" "}
-                              </span>
+                              <span className="text-muted-foreground">{t("tasks.priority")}: </span>
                               <span className={getPriorityColor(task.priority)}>
                                 {getPriorityLabel(task.priority)}
                               </span>
@@ -244,10 +225,7 @@ export default function TasksPage() {
                 </h3>
                 <div className="grid gap-4 md:grid-cols-2">
                   {completedTasks.map((task) => (
-                    <Card
-                      key={task.id}
-                      className="hover:shadow-md transition-shadow opacity-75"
-                    >
+                    <Card key={task.id} className="hover:shadow-md transition-shadow opacity-75">
                       <CardHeader>
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
@@ -255,9 +233,7 @@ export default function TasksPage() {
                               {task.title}
                             </CardTitle>
                             {task.description && (
-                              <CardDescription className="mt-2">
-                                {task.description}
-                              </CardDescription>
+                              <CardDescription className="mt-2">{task.description}</CardDescription>
                             )}
                           </div>
                           <Button
@@ -274,9 +250,7 @@ export default function TasksPage() {
                         <div className="flex items-center justify-between text-sm">
                           <div className="flex items-center gap-4">
                             <div>
-                              <span className="text-muted-foreground">
-                                {t("tasks.priority")}:{" "}
-                              </span>
+                              <span className="text-muted-foreground">{t("tasks.priority")}: </span>
                               <span className={getPriorityColor(task.priority)}>
                                 {getPriorityLabel(task.priority)}
                               </span>

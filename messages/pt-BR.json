@@ -27,7 +27,8 @@
     "subtitle": "Transforme suas anotações manuscritas em tarefas e notas organizadas",
     "uploadCard": {
       "title": "Upload",
-      "description": "Faça upload de uma imagem de suas anotações manuscritas"
+      "description": "Faça upload de uma imagem de suas anotações",
+      "content": "Envie uma imagem para começar"
     },
     "tasksCard": {
       "title": "Tarefas",

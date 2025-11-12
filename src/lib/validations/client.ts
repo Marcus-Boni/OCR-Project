@@ -9,6 +9,7 @@ export function useValidationSchemas() {
   const locale = useLocale();
   const t = useTranslations("validation");
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <A supression because of the nature of this hook>
   return useMemo(() => {
     const uploadImageSchema = z.object({
       file: z

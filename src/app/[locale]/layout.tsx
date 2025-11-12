@@ -21,8 +21,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "OPTSOLV OCR - Transforme Anotações em Tarefas",
-  description:
-    "Sistema inteligente de OCR e análise de anotações manuscritas com IA",
+  description: "Sistema inteligente de OCR e análise de anotações manuscritas com IA",
   icons: {
     icon: "/icon.svg",
     apple: "/apple-icon.svg",
@@ -49,9 +48,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

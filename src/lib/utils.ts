@@ -64,7 +64,7 @@ export function formatRelativeTime(date: Date | string, locale = "pt-BR"): strin
  */
 export function truncate(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
-  return text.slice(0, maxLength) + "...";
+  return `${text.slice(0, maxLength)}...`;
 }
 
 /**

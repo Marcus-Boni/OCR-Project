@@ -22,10 +22,7 @@ import { Label } from "@/components/ui/label";
 import { PasswordInput } from "@/components/ui/password-input";
 import { useRouter } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/browser";
-import {
-  type RegisterInput,
-  useValidationSchemas,
-} from "@/lib/validations/client";
+import { type RegisterInput, useValidationSchemas } from "@/lib/validations/client";
 
 export default function RegisterPage() {
   const t = useTranslations();
@@ -82,12 +79,8 @@ export default function RegisterPage() {
 
       <Card className="w-full max-w-md mx-4">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">
-            {t("common.appName")}
-          </CardTitle>
-          <CardDescription className="text-center">
-            {t("auth.register")}
-          </CardDescription>
+          <CardTitle className="text-2xl font-bold text-center">{t("common.appName")}</CardTitle>
+          <CardDescription className="text-center">{t("auth.register")}</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <CardContent className="space-y-4">
@@ -123,9 +116,7 @@ export default function RegisterPage() {
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">
-                {t("auth.confirmPassword")}
-              </Label>
+              <Label htmlFor="confirmPassword">{t("auth.confirmPassword")}</Label>
               <PasswordInput
                 id="confirmPassword"
                 placeholder="••••••••"

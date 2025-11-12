@@ -22,10 +22,7 @@ import { Label } from "@/components/ui/label";
 import { PasswordInput } from "@/components/ui/password-input";
 import { useRouter } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/browser";
-import {
-  type LoginInput,
-  useValidationSchemas,
-} from "@/lib/validations/client";
+import { type LoginInput, useValidationSchemas } from "@/lib/validations/client";
 
 export default function LoginPage() {
   const t = useTranslations();
@@ -81,12 +78,8 @@ export default function LoginPage() {
 
       <Card className="w-full max-w-md mx-4">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">
-            {t("common.appName")}
-          </CardTitle>
-          <CardDescription className="text-center">
-            {t("auth.login")}
-          </CardDescription>
+          <CardTitle className="text-2xl font-bold text-center">{t("common.appName")}</CardTitle>
+          <CardDescription className="text-center">{t("auth.login")}</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <CardContent className="space-y-4">
@@ -128,10 +121,7 @@ export default function LoginPage() {
             </Button>
             <div className="text-sm text-center text-muted-foreground">
               {t("auth.noAccount")}{" "}
-              <Link
-                href="/auth/register"
-                className="text-primary hover:underline"
-              >
+              <Link href="/auth/register" className="text-primary hover:underline">
                 {t("auth.register")}
               </Link>
             </div>

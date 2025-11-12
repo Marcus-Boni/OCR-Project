@@ -10,7 +10,9 @@ export async function createServerSupabaseClient() {
   const cookieStore = await cookies();
 
   return createServerClient<Database>(
+    // biome-ignore lint/style/noNonNullAssertion: <Supressed because these env vars are required>
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    // biome-ignore lint/style/noNonNullAssertion: <Supressed because these env vars are required>
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {

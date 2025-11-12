@@ -6,14 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { AppHeader } from "@/components/app-header";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/browser";
 
 export default function DashboardPage() {
@@ -57,12 +50,12 @@ export default function DashboardPage() {
                   </div>
                   <CardTitle>{t("dashboard.uploadCard.title")}</CardTitle>
                 </div>
-                <CardDescription>
-                  {t("dashboard.uploadCard.description")}
-                </CardDescription>
+                <CardDescription>{t("dashboard.uploadCard.description")}</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button className="w-full">{t("upload.selectFile")}</Button>
+                <div className="text-sm text-muted-foreground">
+                  {t("dashboard.uploadCard.content")}
+                </div>
               </CardContent>
             </Card>
           </Link>
@@ -77,9 +70,7 @@ export default function DashboardPage() {
                   </div>
                   <CardTitle>{t("dashboard.tasksCard.title")}</CardTitle>
                 </div>
-                <CardDescription>
-                  {t("dashboard.tasksCard.description")}
-                </CardDescription>
+                <CardDescription>{t("dashboard.tasksCard.description")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-sm text-muted-foreground">
@@ -99,9 +90,7 @@ export default function DashboardPage() {
                   </div>
                   <CardTitle>{t("dashboard.notesCard.title")}</CardTitle>
                 </div>
-                <CardDescription>
-                  {t("dashboard.notesCard.description")}
-                </CardDescription>
+                <CardDescription>{t("dashboard.notesCard.description")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-sm text-muted-foreground">
@@ -114,9 +103,7 @@ export default function DashboardPage() {
 
         {/* Recent Activity */}
         <div className="mt-12">
-          <h3 className="text-2xl font-bold mb-4">
-            {t("dashboard.recentActivity.title")}
-          </h3>
+          <h3 className="text-2xl font-bold mb-4">{t("dashboard.recentActivity.title")}</h3>
           <Card>
             <CardContent className="py-8">
               <p className="text-center text-muted-foreground">
