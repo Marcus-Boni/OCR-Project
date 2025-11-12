@@ -42,7 +42,12 @@
     },
     "recentActivity": {
       "title": "Atividade Recente",
-      "empty": "Nenhuma atividade recente. Faça upload de uma imagem para começar!"
+      "empty": "Nenhuma atividade recente. Faça upload de uma imagem para começar!",
+      "recentDocuments": "Documentos Recentes",
+      "recentTasks": "Tarefas Recentes",
+      "recentNotes": "Notas Recentes",
+      "viewAll": "Ver todas",
+      "noTextExtracted": "Sem texto extraído"
     }
   },
   "auth": {

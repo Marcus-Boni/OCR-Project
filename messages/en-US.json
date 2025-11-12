@@ -41,7 +41,12 @@
     },
     "recentActivity": {
       "title": "Recent Activity",
-      "empty": "No recent activity. Upload an image to get started!"
+      "empty": "No recent activity. Upload an image to get started!",
+      "recentDocuments": "Recent Documents",
+      "recentTasks": "Recent Tasks",
+      "recentNotes": "Recent Notes",
+      "viewAll": "View all",
+      "noTextExtracted": "No text extracted"
     }
   },
   "auth": {
