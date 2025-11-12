@@ -1,6 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { type NextRequest, NextResponse } from "next/server";
-import { toast } from "sonner";
 import { getSession } from "@/lib/supabase/server";
 import { aiAnalysisRequestSchema } from "@/lib/validations";
 
@@ -38,7 +37,17 @@ export async function POST(req: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    // Use Gemini 2.5 Pro - Best for complex text analysis and structured output
+    // Released June 2025, superior reasoning capabilities
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.5-pro",
+      generationConfig: {
+        temperature: 0.7, // Balanced for creative yet consistent categorization
+        topP: 0.95,
+        topK: 40,
+        responseMimeType: "application/json", // Request JSON response format
+      },
+    });
 
     // Create prompt for task and note classification
     const prompt = `Você é um assistente inteligente para análise de anotações manuscritas. 
@@ -98,7 +107,7 @@ IMPORTANTE: Retorne APENAS o JSON, sem texto adicional antes ou depois.`;
       analysisData = JSON.parse(cleanedText);
     } catch (parseError) {
       console.error("Failed to parse AI response:", parseError);
-      toast.error("Failed to parse AI response");
+      console.error("AI Response was:", aiText);
       return NextResponse.json({ error: "Failed to parse AI response" }, { status: 500 });
     }
 

@@ -36,7 +36,16 @@ export async function POST(req: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    // Use Gemini 2.5 Flash - Best for multimodal OCR (fast and accurate)
+    // Released June 2025, supports 1M input tokens and vision
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.5-flash",
+      generationConfig: {
+        temperature: 0.4, // Lower temperature for more consistent OCR results
+        topP: 0.95,
+        topK: 40,
+      },
+    });
 
     // Fetch image from URL
     const imageResponse = await fetch(imageUrl);
