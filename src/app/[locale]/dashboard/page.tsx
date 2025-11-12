@@ -1,10 +1,11 @@
 "use client";
 
+import type { User } from "@supabase/supabase-js";
 import { ListTodo, StickyNote, Upload } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { LanguageToggle } from "@/components/language-toggle";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { useEffect, useState } from "react";
+import { AppHeader } from "@/components/app-header";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,26 +14,30 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { createClient } from "@/lib/supabase/browser";
 
 export default function DashboardPage() {
   const t = useTranslations();
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const supabase = createClient();
+
+  useEffect(() => {
+    const getUser = async () => {
+      setLoading(true);
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+      setLoading(false);
+    };
+
+    getUser();
+  }, [supabase]);
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-primary">
-              {t("common.appName")}
-            </h1>
-          </div>
-          <div className="flex items-center gap-2">
-            <LanguageToggle />
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
+      <AppHeader user={user} loading={loading} />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
