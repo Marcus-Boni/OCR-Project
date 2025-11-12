@@ -1,6 +1,10 @@
 import { nanoid } from "nanoid";
 import { type NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient, getSession } from "@/lib/supabase/server";
+import type { Database } from "@/types/database";
+
+type DocumentInsert = Database["public"]["Tables"]["documents"]["Insert"];
+type DocumentRow = Database["public"]["Tables"]["documents"]["Row"];
 
 /**
  * POST /api/upload
@@ -56,18 +60,26 @@ export async function POST(req: NextRequest) {
       data: { publicUrl },
     } = supabase.storage.from("documents").getPublicUrl(data.path);
 
-    const { data: document, error: dbError } = await supabase
-      .from("documents")
-      .insert({
-        user_id: session.user.id,
-        image_url: publicUrl,
-      })
-      .select()
-      .single();
+    const documentData: DocumentInsert = {
+      user_id: session.user.id,
+      image_url: publicUrl,
+    };
+
+    // biome-ignore lint/suspicious/noExplicitAny: <Supabase type inference issue>
+    const result = await (supabase.from("documents") as any).insert(documentData).select().single();
+
+    const { data: document, error: dbError } = result as {
+      data: DocumentRow | null;
+      error: Error | null;
+    };
 
     if (dbError) {
       console.error("Database error:", dbError);
       await supabase.storage.from("documents").remove([data.path]);
+      return NextResponse.json({ error: "Failed to create document record" }, { status: 500 });
+    }
+
+    if (!document) {
       return NextResponse.json({ error: "Failed to create document record" }, { status: 500 });
     }
 
