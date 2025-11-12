@@ -64,7 +64,7 @@ cd opts-ocr-app
 npm install
 
 # Configure as variáveis de ambiente
-cp .env.local.example .env.local
+cp .env.local.template .env.local
 # Edite .env.local com suas credenciais
 
 # Execute em desenvolvimento
