@@ -57,7 +57,7 @@
     "loginSuccess": "Login successful!",
     "logoutSuccess": "Logout successful!",
     "registerSuccess": "Registration successful!",
-    "invalidCredentials": "Invalid credentials",
+    "invalidCredentials": "Invalid email or password",
     "emailRequired": "Email is required",
     "passwordRequired": "Password is required",
     "passwordMismatch": "Passwords do not match"
@@ -102,7 +102,7 @@
   },
   "settings": {
     "title": "Settings",
-    "language": "Language",
+    "language": "Toggle English/Portuguese",
     "theme": "Theme",
     "lightMode": "Light Mode",
     "darkMode": "Dark Mode",
@@ -110,6 +110,40 @@
     "profile": "Profile",
     "account": "Account",
     "preferences": "Preferences"
+  },
+  "validation": {
+    "email": {
+      "invalid": "Invalid email address",
+      "required": "Email is required"
+    },
+    "password": {
+      "min": "Password must be at least 6 characters",
+      "required": "Password is required"
+    },
+    "confirmPassword": {
+      "match": "Passwords do not match",
+      "required": "Please confirm your password"
+    },
+    "file": {
+      "size": "File size must be less than 10MB",
+      "type": "File must be a JPEG, PNG, or WEBP image"
+    },
+    "text": {
+      "empty": "Text cannot be empty"
+    },
+    "title": {
+      "required": "Title is required",
+      "max": "Title must be at most 255 characters"
+    },
+    "content": {
+      "required": "Content is required"
+    },
+    "url": {
+      "invalid": "Invalid image URL"
+    },
+    "uuid": {
+      "invalid": "Invalid document ID"
+    }
   },
   "errors": {
     "generic": "An error occurred. Please try again.",

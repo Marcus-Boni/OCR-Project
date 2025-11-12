@@ -57,10 +57,51 @@
     "loginSuccess": "Login realizado com sucesso!",
     "logoutSuccess": "Logout realizado com sucesso!",
     "registerSuccess": "Registro realizado com sucesso!",
-    "invalidCredentials": "Credenciais inválidas",
+    "invalidCredentials": "E-mail ou senha inválidos",
     "emailRequired": "E-mail é obrigatório",
     "passwordRequired": "Senha é obrigatória",
     "passwordMismatch": "As senhas não coincidem"
+  },
+  "validation": {
+    "email": {
+      "invalid": "Endereço de e-mail inválido",
+      "required": "E-mail é obrigatório"
+    },
+    "password": {
+      "min": "A senha deve ter pelo menos 6 caracteres",
+      "required": "Senha é obrigatória"
+    },
+    "confirmPassword": {
+      "match": "As senhas não coincidem",
+      "required": "Por favor, confirme sua senha"
+    },
+    "file": {
+      "size": "O tamanho do arquivo deve ser menor que 10MB",
+      "type": "O arquivo deve ser uma imagem JPEG, PNG ou WEBP"
+    },
+    "text": {
+      "empty": "O texto não pode estar vazio"
+    },
+    "title": {
+      "required": "Título é obrigatório",
+      "max": "O título deve ter no máximo 255 caracteres"
+    },
+    "content": {
+      "required": "Conteúdo é obrigatório"
+    },
+    "url": {
+      "invalid": "URL de imagem inválida"
+    },
+    "uuid": {
+      "invalid": "ID de documento inválido"
+    }
+  },
+  "errors": {
+    "generic": "Ocorreu um erro. Por favor, tente novamente.",
+    "network": "Erro de rede. Verifique sua conexão.",
+    "unauthorized": "Você não está autorizado a acessar este recurso.",
+    "notFound": "Recurso não encontrado.",
+    "serverError": "Erro no servidor. Tente novamente mais tarde."
   },
   "upload": {
     "title": "Upload de Imagem",
@@ -102,7 +143,7 @@
   },
   "settings": {
     "title": "Configurações",
-    "language": "Idioma",
+    "language": "Alternar Inglês/Português",
     "theme": "Tema",
     "lightMode": "Modo Claro",
     "darkMode": "Modo Escuro",
@@ -110,12 +151,5 @@
     "profile": "Perfil",
     "account": "Conta",
     "preferences": "Preferências"
-  },
-  "errors": {
-    "generic": "Ocorreu um erro. Tente novamente.",
-    "network": "Erro de rede. Verifique sua conexão.",
-    "unauthorized": "Você não está autorizado a acessar este recurso.",
-    "notFound": "Recurso não encontrado.",
-    "serverError": "Erro no servidor. Tente novamente mais tarde."
   }
 }
